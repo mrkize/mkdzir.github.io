@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文件展示页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .file-list {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .file-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        .preview-area {
+            border: 1px solid #ddd;
+            padding: 15px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>文件仓库</h1>
+    
+    <!-- 文件列表 -->
+    <div class="file-list">
+        <h2>可用文件</h2>
+        <div class="file-item">
+            <a href="#file1" onclick="showPreview('sample1.txt')">📄 sample1.txt</a>
+        </div>
+        <div class="file-item">
+            <a href="#file2" onclick="showPreview('sample2.txt')">📄 sample2.txt</a>
+        </div>
+        <div class="file-item">
+            <a href="document.pdf" target="_blank">📁 document.pdf</a> (直接下载)
+        </div>
+    </div>
+
+    <!-- 文件预览区 -->
+    <div id="preview-section" style="display: none;">
+        <h2>内容预览</h2>
+        <div class="preview-area" id="preview-content"></div>
+    </div>
+
+    <script>
+        // 显示文件预览（仅限文本文件）
+        function showPreview(filename) {
+            fetch(filename)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('preview-section').style.display = 'block';
+                    document.getElementById('preview-content').textContent = text;
+                })
+                .catch(error => {
+                    alert('文件加载失败: ' + error);
+                });
+        }
+    </script>
+</body>
+</html>
