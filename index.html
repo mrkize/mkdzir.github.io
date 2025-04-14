@@ -1,71 +1,171 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>文件展示页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidProM: Text-to-Video Dataset</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
         }
-        .file-list {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 2rem;
         }
-        .file-item {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
+
+        .authors {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
         }
-        .file-item:last-child {
-            border-bottom: none;
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
-        .preview-area {
-            border: 1px solid #ddd;
-            padding: 15px;
-            white-space: pre-wrap;
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .prompt-examples {
+            column-count: 2;
+            column-gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .model-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .model-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .model-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .prompt-examples {
+                column-count: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>文件仓库</h1>
-    
-    <!-- 文件列表 -->
-    <div class="file-list">
-        <h2>可用文件</h2>
-        <div class="file-item">
-            <a href="#file1" onclick="showPreview('sample1.txt')">📄 sample1.txt</a>
+    <header class="header">
+        <h1>VidProM</h1>
+        <p>A Million-scale Real Prompt-Gallery Dataset for Text-to-Video Diffusion Models</p>
+        <div class="badges">
+            <span class="badge">NeurIPS 2024</span>
+            <span class="badge">Datasets and Benchmarks Track</span>
         </div>
-        <div class="file-item">
-            <a href="#file2" onclick="showPreview('sample2.txt')">📄 sample2.txt</a>
+    </header>
+
+    <div class="authors">
+        <div>
+            <h3>Wenhao Wang</h3>
+            <p>University of Technology Sydney</p>
         </div>
-        <div class="file-item">
-            <a href="document.pdf" target="_blank">📁 document.pdf</a> (直接下载)
+        <div>
+            <h3>Yi Yang</h3>
+            <p>Zhejiang University</p>
         </div>
     </div>
 
-    <!-- 文件预览区 -->
-    <div id="preview-section" style="display: none;">
-        <h2>内容预览</h2>
-        <div class="preview-area" id="preview-content"></div>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h2>1.67M</h2>
+            <p>Unique Prompts</p>
+        </div>
+        <div class="stat-card">
+            <h2>6.69M</h2>
+            <p>Generated Videos</p>
+        </div>
+        <div class="stat-card">
+            <h2>4</h2>
+            <p>Diffusion Models</p>
+        </div>
     </div>
 
-    <script>
-        // 显示文件预览（仅限文本文件）
-        function showPreview(filename) {
-            fetch(filename)
-                .then(response => response.text())
-                .then(text => {
-                    document.getElementById('preview-section').style.display = 'block';
-                    document.getElementById('preview-content').textContent = text;
-                })
-                .catch(error => {
-                    alert('文件加载失败: ' + error);
-                });
-        }
-    </script>
+    <section class="model-showcase">
+        <div class="model-card">
+            <img src="https://via.placeholder.com/400x200.png?text=3D+Village+Scene" alt="3D Village Example">
+            <h3>3D Village Scene</h3>
+        </div>
+        <div class="model-card">
+            <img src="https://via.placeholder.com/400x200.png?text=Disney+Style+Chicks" alt="Disney Style Example">
+            <h3>Disney Style Animation</h3>
+        </div>
+        <div class="model-card">
+            <img src="https://via.placeholder.com/400x200.png?text=Chinese+Dragon" alt="Dragon Example">
+            <h3>Chinese Dragon Scene</h3>
+        </div>
+    </section>
+
+    <div class="prompt-examples">
+        <h2>Example Prompts</h2>
+        <ul>
+            <li>Create a vivid 3D village scene in the midst of a journey...</li>
+            <li>Take the viewers on a captivating cinematic journey in 8K ultra HD...</li>
+            <li>a Chinese dragon flying in the city sky, large scene</li>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="badges">
+            <a href="#" class="badge">Paper</a>
+            <a href="#" class="badge">GitHub</a>
+            <a href="#" class="badge">Dataset Download</a>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #666;">
+            © 2024 VidProM Project. Featured in Daily Papers by AK.
+        </p>
+    </footer>
 </body>
 </html>
