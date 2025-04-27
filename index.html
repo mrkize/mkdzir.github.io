@@ -8,46 +8,113 @@
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark-color);
         }
 
         .header {
             text-align: center;
-            padding: 2rem;
-            background: var(--primary-color);
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2a3a 100%);
             color: white;
-            border-radius: 10px;
-            margin-bottom: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(255,255,255,0.05)" width="50" height="50" x="0" y="0"></rect></svg>');
+            opacity: 0.3;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        } */
 
         .authors {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .author-card {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .author-card:hover {
+            transform: translateY(-5px);
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 4rem 0;
         }
 
         .stat-card {
             background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: center;
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-card h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 1rem 0;
         }
 
         .badges {
@@ -61,29 +128,90 @@
         .badge {
             background: var(--secondary-color);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
             font-size: 0.9em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
 
-        .prompt-examples {
-            column-count: 2;
-            column-gap: 2rem;
-            margin: 2rem 0;
+        .badge:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
         }
 
-        .model-showcase {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+        section {
+            background: white;
+            padding: 2.5rem 1.5rem;
+            border-radius: 15px;
             margin: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .model-card img {
-            width: 100%;
-            height: 200px;
+        section h1 {
+            text-align: center;
+            margin: 0rem 0 2.5rem 0;
+            /* margin-bottom: 1rem; */
+            color: var(--primary-color);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .image {
+            width: 250px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        figure {
+            margin: 0;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        figure:hover {
+            transform: translateY(-5px);
+        }
+
+        figure img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        figcaption {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 16px;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
         }
 
         @media (max-width: 768px) {
@@ -94,6 +222,36 @@
             .prompt-examples {
                 column-count: 1;
             }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animation for subtle effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section, .header, .stats-grid {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: 0.4s;
         }
     </style>
 </head>
@@ -105,14 +263,20 @@
             <span class="badge">NeurIPS 2024</span>
             <span class="badge">Datasets and Benchmarks Track</span>
         </div>
+
+        <div class="badges">
+            <a href="#" class="badge">Paper</a>
+            <a href="#" class="badge">GitHub</a>
+            <a href="#" class="badge">Dataset Download</a>
+        </div>
     </header>
 
     <div class="authors">
-        <div>
+        <div class="author-card">
             <h3>Wenhao Wang</h3>
             <p>University of Technology Sydney</p>
         </div>
-        <div>
+        <div class="author-card">
             <h3>Yi Yang</h3>
             <p>Zhejiang University</p>
         </div>
@@ -120,52 +284,68 @@
 
     <div class="stats-grid">
         <div class="stat-card">
-            <h2>1.67M</h2>
-            <p>Unique Prompts</p>
+            <h2>9585</h2>
+            <p>Integral Effects Data</p>
         </div>
         <div class="stat-card">
-            <h2>6.69M</h2>
-            <p>Generated Videos</p>
+            <h2>75520</h2>
+            <p>Image Layer</p>
         </div>
         <div class="stat-card">
-            <h2>4</h2>
-            <p>Diffusion Models</p>
+            <h2>2978</h2>
+            <p>Annotation effects</p>
+        </div>
+        <div class="stat-card">
+            <h2>17774</h2>
+            <p>Annotation Image Layer</p>
         </div>
     </div>
 
-    <section class="model-showcase">
-        <div class="model-card">
-            <img src="https://via.placeholder.com/400x200.png?text=3D+Village+Scene" alt="3D Village Example">
-            <h3>3D Village Scene</h3>
-        </div>
-        <div class="model-card">
-            <img src="https://via.placeholder.com/400x200.png?text=Disney+Style+Chicks" alt="Disney Style Example">
-            <h3>Disney Style Animation</h3>
-        </div>
-        <div class="model-card">
-            <img src="https://via.placeholder.com/400x200.png?text=Chinese+Dragon" alt="Dragon Example">
-            <h3>Chinese Dragon Scene</h3>
+    <section class="dataset-overview">
+        <h1>Dataset Overview</h1>
+        <div class="container">
+            <img src="resource/66.gif" alt="Sample video 1" class="image">
+            <img src="resource/hot.gif" alt="Sample video 2" class="image">
+            <img src="resource/merge.gif" alt="Sample video 3" class="image">
+            <img src="resource/stage3.gif" alt="Sample video 4" class="image">
+            <img src="resource/alipaysacn.gif" alt="Sample video 5" class="image">
+            <img src="resource/merge1.gif" alt="Sample video 6" class="image">
+            <img src="resource/merge20.gif" alt="Sample video 7" class="image">
+            <img src="resource/merge6.gif" alt="Sample video 8" class="image">
         </div>
     </section>
 
-    <div class="prompt-examples">
-        <h2>Example Prompts</h2>
-        <ul>
-            <li>Create a vivid 3D village scene in the midst of a journey...</li>
-            <li>Take the viewers on a captivating cinematic journey in 8K ultra HD...</li>
-            <li>a Chinese dragon flying in the city sky, large scene</li>
-        </ul>
-    </div>
+    <section class="image-layer-prompts">
+        <h1>Image Layer Prompts</h1>
+        <div style="text-align: center;">
+            <img src="resource/animation-hec.png" alt="Prompt visualization" style="max-width:100%; height:auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        </div>
+    </section>
+    
+    <section class="generate-results">
+        <h1>Generated Results</h1>
+        <div class="container">
+            <figure>
+                <img src="resource/out.gif" alt="Sun bursting outward">
+                <figcaption>太阳向外迸发</figcaption>
+            </figure>
+            <figure>
+                <img src="resource/scale.gif" alt="Red envelope scaling">
+                <figcaption>红包伸缩跳动</figcaption>
+            </figure>
+            <figure>
+                <img src="resource/erji.gif" alt="Headphones bouncing">
+                <figcaption>耳机上下跳动</figcaption>
+            </figure>
+            <figure>
+                <img src="resource/snow.gif" alt="Headphones bouncing">
+                <figcaption>雪花向右飘落</figcaption>
+            </figure>
+        </div>
+    </section>
 
     <footer>
-        <div class="badges">
-            <a href="#" class="badge">Paper</a>
-            <a href="#" class="badge">GitHub</a>
-            <a href="#" class="badge">Dataset Download</a>
-        </div>
-        <p style="text-align: center; margin-top: 2rem; color: #666;">
-            © 2024 VidProM Project. Featured in Daily Papers by AK.
-        </p>
+        <p>© 2024 VidProM Project. Featured in Daily Papers by AK.</p>
     </footer>
 </body>
 </html>
